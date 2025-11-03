@@ -12,7 +12,8 @@ public class Main {
 //                new Ackley(2), new Ackley(5), new Ackley(10),
 //                new Griewank(2), new Griewank(5), new Griewank(10),
 //                new Rastrigin(2), new Rastrigin(5), new Rastrigin(10),
-                new Schwefel26(2), new Schwefel26(5), new Schwefel26(10)
+//                new Schwefel26(2), new Schwefel26(5), new Schwefel26(10),
+
         };
 
         for (Problem p : problems) {
