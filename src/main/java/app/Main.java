@@ -8,9 +8,8 @@ public class Main {
         Algorithm rs = new RandomSearch();
 
         Problem[] problems = {
-                new Sphere(2),
-                new Sphere(5),
-                new Sphere(10)
+//                new Sphere(2), new Sphere(5), new Sphere(10),
+                new Ackley(2), new Ackley(5), new Ackley(10)
         };
 
         for (Problem p : problems) {
