@@ -17,6 +17,6 @@ public class CarromTable extends Problem {
         double Y = x[1];
         double cosTerm = Math.cos(X) * Math.cos(Y);
         double expTerm = Math.exp(-((X - Math.PI) * (X - Math.PI) + (Y - Math.PI) * (Y - Math.PI)));
-        return 1.0 - (cosTerm * cosTerm) * expTerm; // global min 0 at (pi, pi)
+        return 1.0 - (cosTerm * cosTerm) * expTerm;
     }
 }
