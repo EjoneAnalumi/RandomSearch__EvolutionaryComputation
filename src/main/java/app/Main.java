@@ -16,7 +16,8 @@ public class Main {
 //                new Trid(2), new Trid(5), new Trid(10),
 //                new Bukin(),
 //                new CarromTable(),
-                new StyblinskiTang(2), new StyblinskiTang(5), new StyblinskiTang(10)
+//                new StyblinskiTang(2), new StyblinskiTang(5), new StyblinskiTang(10),
+                new Levy(2), new Levy(5), new Levy(10)
         };
 
         for (Problem p : problems) {
