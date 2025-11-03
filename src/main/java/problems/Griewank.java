@@ -17,9 +17,8 @@ public class Griewank extends Problem {
         for (int i = 0; i < d; i++) {
             double xi = x[i];
             sum += (xi * xi) / 4000.0;
-            // i is 0-based; Griewank uses sqrt(i+1)
             prod *= Math.cos(xi / Math.sqrt(i + 1.0));
         }
-        return sum - prod + 1.0; // global minimum is 0 at x = 0
+        return sum - prod + 1.0;
     }
 }

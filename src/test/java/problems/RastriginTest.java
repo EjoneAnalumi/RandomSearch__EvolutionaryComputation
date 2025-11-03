@@ -17,14 +17,14 @@ class RastriginTest {
     @Test
     void globalMinimum5D() {
         Problem p = new Rastrigin(5);
-        double f = p.evaluate(new double[5]); // zeros
+        double f = p.evaluate(new double[5]);
         assertEquals(0.0, f, TOL);
     }
 
     @Test
     void globalMinimum10D() {
         Problem p = new Rastrigin(10);
-        double f = p.evaluate(new double[10]); // zeros
+        double f = p.evaluate(new double[10]);
         assertEquals(0.0, f, TOL);
     }
 }
