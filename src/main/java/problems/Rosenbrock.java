@@ -13,7 +13,6 @@ public class Rosenbrock extends Problem {
     @Override
     public double evaluate(double[] x) {
         double sum = 0.0;
-        // Standard Rosenbrock: sum_{i=1}^{d-1} [100*(x_{i+1} - x_i^2)^2 + (1 - x_i)^2]
         for (int i = 0; i < d - 1; i++) {
             double xi = x[i];
             double xnext = x[i + 1];
