@@ -14,7 +14,8 @@ public class Main {
 //                new Rastrigin(2), new Rastrigin(5), new Rastrigin(10),
 //                new Schwefel26(2), new Schwefel26(5), new Schwefel26(10),
 //                new Trid(2), new Trid(5), new Trid(10),
-                new Bukin()
+//                new Bukin(),
+                new CarromTable()
         };
 
         for (Problem p : problems) {
