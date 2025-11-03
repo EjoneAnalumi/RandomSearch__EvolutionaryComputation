@@ -15,7 +15,8 @@ public class Main {
 //                new Schwefel26(2), new Schwefel26(5), new Schwefel26(10),
 //                new Trid(2), new Trid(5), new Trid(10),
 //                new Bukin(),
-                new CarromTable()
+//                new CarromTable(),
+                new StyblinskiTang(2), new StyblinskiTang(5), new StyblinskiTang(10)
         };
 
         for (Problem p : problems) {
