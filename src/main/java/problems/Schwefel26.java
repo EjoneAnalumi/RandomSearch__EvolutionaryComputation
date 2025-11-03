@@ -2,7 +2,7 @@ package problems;
 
 public class Schwefel26 extends Problem {
 
-    private static final double C = 418.9828872724338;
+    private static final double C = 418.982887272433799807913601398;
 
     public Schwefel26(int d) {
         super(d, "Schwefel26");
