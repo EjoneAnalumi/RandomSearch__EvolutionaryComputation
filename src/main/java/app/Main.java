@@ -17,7 +17,8 @@ public class Main {
 //                new Bukin(),
 //                new CarromTable(),
 //                new StyblinskiTang(2), new StyblinskiTang(5), new StyblinskiTang(10),
-                new Levy(2), new Levy(5), new Levy(10)
+//                new Levy(2), new Levy(5), new Levy(10),
+                new Michalewicz(2), new Michalewicz(5), new Michalewicz(10)
         };
 
         for (Problem p : problems) {
