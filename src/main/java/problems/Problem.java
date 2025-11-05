@@ -7,7 +7,7 @@ public abstract class Problem {
     protected double[] lowerBound;
     protected double[] upperBound;
     protected String name;
-    protected Random rand = new Random();
+    protected static Random rand = new Random();
 
     public Problem(int d, String name) {
         this.d = d;
