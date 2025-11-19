@@ -16,6 +16,14 @@ public abstract class Problem {
         this.upperBound = new double[d];
     }
 
+    public double getLowerBound(int i) {
+        return lowerBound[i];
+    }
+
+    public double getUpperBound(int i) {
+        return upperBound[i];
+    }
+
     public abstract double evaluate(double[] x);
 
     public double[] generateRandomSolution() {
