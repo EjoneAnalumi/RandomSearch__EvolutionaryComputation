@@ -3,7 +3,7 @@ package app;
 import problems.*;
 import algorithm.*;
 
-public class Main {
+public class RandomSearchMain {
     public static void main(String[] args) {
         Algorithm rs = new RandomSearch();
 
