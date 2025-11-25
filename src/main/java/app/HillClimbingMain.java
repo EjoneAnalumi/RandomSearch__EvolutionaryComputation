@@ -7,6 +7,7 @@ public class HillClimbingMain {
     public static void main(String[] args) {
 
         Algorithm hc = new HillClimbing(0.01);
+        Algorithm hcImproved = new ImprovedHillClimbing(0.01);
 
         Problem[] problems = {
                 new Sphere(2), new Sphere(5), new Sphere(10),
@@ -27,23 +28,39 @@ public class HillClimbingMain {
         for (Problem p : problems) {
 
             double[] results = new double[runs];
+            double[] resultsImp = new double[runs];
+
             int maxFes = 3000 * p.getDimensions();
 
             for (int r = 0; r < runs; r++) {
-                Solution sol = hc.execute(p, maxFes, false);
-                results[r] = sol.fitness;
+                Solution sol1 = hc.execute(p, maxFes, false);
+                results[r] = sol1.fitness;
+
+                Solution sol2 = hcImproved.execute(p, maxFes, false);
+                resultsImp[r] = sol2.fitness;
             }
 
-            double min = StatisticsUtility.getMin(results);
-            double avg = StatisticsUtility.getAverage(results);
-            double std = StatisticsUtility.getStd(results);
+            double minHC = StatisticsUtility.getMin(results);
+            double avgHC = StatisticsUtility.getAverage(results);
+            double stdHC = StatisticsUtility.getStd(results);
+
+            double minImp = StatisticsUtility.getMin(resultsImp);
+            double avgImp = StatisticsUtility.getAverage(resultsImp);
+            double stdImp = StatisticsUtility.getStd(resultsImp);
 
             System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.println(" Problem: " + p.getName() + " (" + p.getDimensions() + "D)");
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println("Min: " + min);
-            System.out.println("Avg: " + avg);
-            System.out.println("Std: " + std);
+
+            System.out.println("Original HillClimbin: ");
+            System.out.println("Min: " + minHC);
+            System.out.println("Avg: " + avgHC);
+            System.out.println("Std: " + stdHC);
+
+            System.out.println("Improved HillClimbin: ");
+            System.out.println("Min: " + minImp);
+            System.out.println("Avg: " + avgImp);
+            System.out.println("Std: " + stdImp);
         }
     }
 }
