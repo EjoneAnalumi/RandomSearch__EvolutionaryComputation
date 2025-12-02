@@ -6,8 +6,8 @@ import algorithm.*;
 public class HillClimbingMain {
     public static void main(String[] args) {
 
-        Algorithm hc = new HillClimbing(0.01);
-        Algorithm hcImproved = new ImprovedHillClimbing(0.01);
+        Algorithm hc = new HillClimbing(0.5);
+        Algorithm hcImproved = new ImprovedHillClimbing(0.5);
 
         Problem[] problems = {
                 new Sphere(2), new Sphere(5), new Sphere(10),

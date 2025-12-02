@@ -1,12 +1,10 @@
 package algorithm;
 
 import problems.Problem;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ImprovedHillClimbing extends Algorithm {
 
-    private double stepSize;
+    private final double stepSize;
 
     public ImprovedHillClimbing(double stepSize) {
         this.stepSize = stepSize;
@@ -22,76 +20,98 @@ public class ImprovedHillClimbing extends Algorithm {
         double currentFitness = problem.evaluate(current);
         fes++;
 
-        if (isDebug)
-            System.out.println("Start: " + currentFitness);
+        if (isDebug) {
+            System.out.println("Start: f = " + currentFitness);
+        }
 
         while (fes < maxFes) {
 
-            double bestFitness = currentFitness;
+            double bestNeighborFitness = currentFitness;
             double[] bestNeighbor = null;
 
-            List<double[]> directionVectors = generateDirectionVectors(d);
+            if (d == 2) {
+                double[][] directions = {
+                        { 1,  0},
+                        {-1,  0},
+                        { 0,  1},
+                        { 0, -1},
+                        { 1,  1},
+                        { 1, -1},
+                        {-1,  1},
+                        {-1, -1}
+                };
 
-            for (double[] dir : directionVectors) {
+                for (double[] dir : directions) {
+                    double[] neighbor = current.clone();
 
-                double[] neighbor = current.clone();
-                for (int i = 0; i < d; i++) {
-                    neighbor[i] += dir[i] * stepSize;
+                    neighbor[0] += dir[0] * stepSize;
+                    neighbor[1] += dir[1] * stepSize;
 
-                    if (neighbor[i] < problem.getLowerBound(i))
-                        neighbor[i] = problem.getLowerBound(i);
+                    for (int i = 0; i < 2; i++) {
+                        if (neighbor[i] < problem.getLowerBound(i))
+                            neighbor[i] = problem.getLowerBound(i);
+                        if (neighbor[i] > problem.getUpperBound(i))
+                            neighbor[i] = problem.getUpperBound(i);
+                    }
 
-                    if (neighbor[i] > problem.getUpperBound(i))
-                        neighbor[i] = problem.getUpperBound(i);
+                    double f = problem.evaluate(neighbor);
+                    fes++;
+                    if (fes >= maxFes) break;
+
+                    if (f < bestNeighborFitness) {
+                        bestNeighborFitness = f;
+                        bestNeighbor = neighbor;
+                    }
                 }
 
-                double f = problem.evaluate(neighbor);
-                fes++;
+            } else {
+                for (int i = 0; i < d && fes < maxFes; i++) {
 
-                if (f < bestFitness) {
-                    bestFitness = f;
-                    bestNeighbor = neighbor;
+                    double[] plus = current.clone();
+                    plus[i] += stepSize;
+                    if (plus[i] < problem.getLowerBound(i))
+                        plus[i] = problem.getLowerBound(i);
+                    if (plus[i] > problem.getUpperBound(i))
+                        plus[i] = problem.getUpperBound(i);
+
+                    double fPlus = problem.evaluate(plus);
+                    fes++;
+
+                    if (fPlus < bestNeighborFitness) {
+                        bestNeighborFitness = fPlus;
+                        bestNeighbor = plus;
+                    }
+                    if (fes >= maxFes) break;
+
+                    double[] minus = current.clone();
+                    minus[i] -= stepSize;
+                    if (minus[i] < problem.getLowerBound(i))
+                        minus[i] = problem.getLowerBound(i);
+                    if (minus[i] > problem.getUpperBound(i))
+                        minus[i] = problem.getUpperBound(i);
+
+                    double fMinus = problem.evaluate(minus);
+                    fes++;
+
+                    if (fMinus < bestNeighborFitness) {
+                        bestNeighborFitness = fMinus;
+                        bestNeighbor = minus;
+                    }
                 }
-
-                if (fes >= maxFes)
-                    break;
             }
 
-            if (bestNeighbor == null) break;
+            if (bestNeighbor == null || bestNeighborFitness >= currentFitness) {
+                break;
+            }
 
             current = bestNeighbor;
-            currentFitness = bestFitness;
+            currentFitness = bestNeighborFitness;
 
-            if (isDebug)
+            if (isDebug) {
                 System.out.println("Improved to: " + currentFitness);
+            }
         }
 
         return new Solution(current, currentFitness);
-    }
-
-    private List<double[]> generateDirectionVectors(int d) {
-        List<double[]> dirs = new ArrayList<>();
-        int total = (int) Math.pow(3, d);
-
-        for (int mask = 0; mask < total; mask++) {
-            double[] vec = new double[d];
-            int tmp = mask;
-            boolean allZero = true;
-
-            for (int i = 0; i < d; i++) {
-                int val = tmp % 3;
-                tmp /= 3;
-
-                if (val == 0) vec[i] = -1;
-                else if (val == 1) vec[i] = 0;
-                else vec[i] = +1;
-
-                if (vec[i] != 0) allZero = false;
-            }
-
-            if (!allZero) dirs.add(vec);
-        }
-
-        return dirs;
     }
 }
