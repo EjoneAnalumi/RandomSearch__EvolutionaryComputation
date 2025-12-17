@@ -26,7 +26,7 @@ public class DEMain {
         Algorithm de = new DifferentialEvolution(NP, CR, F);
 
         Problem[] prototypes = new Problem[] {
-                new Sphere(1), new Ackley(1), new Griewank(1), new Rastrigin(1),
+                new Sphere(1), new Ackley(1), new Griewank(1), new Rastrigin(1), new Rosenbrock(1),
                 new Schwefel26(1), new Trid(1), new StyblinskiTang(1), new Levy(1),
                 new Michalewicz(1)
         };
