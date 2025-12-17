@@ -72,6 +72,7 @@ public class DEMain {
             case "Ackley" -> new Ackley(d);
             case "Griewank" -> new Griewank(d);
             case "Rastrigin" -> new Rastrigin(d);
+            case "Rosenbrock" -> new Rosenbrock(d);
             case "Schwefel26" -> new Schwefel26(d);
             case "Trid" -> new Trid(d);
             case "StyblinskiTang" -> new StyblinskiTang(d);
