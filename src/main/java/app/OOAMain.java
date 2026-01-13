@@ -14,11 +14,11 @@ public class OOAMain {
 
     private static final int RUNS = 50;
     private static final int POP_SIZE = 20;
-    private static final String SURNAME = "Analumi"; // <-- change if needed
+    private static final String SURNAME = "Analumi";
 
     public static void main(String[] args) throws IOException {
 
-        Locale.setDefault(Locale.US); // decimal point
+        Locale.setDefault(Locale.US);
 
         int[] dims = {10, 20, 30};
 

@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class OspreyOptimizationAlgorithm extends Algorithm {
 
-    private final int N;               // population size
+    private final int N;
     private final Random rand = new Random();
 
     public OspreyOptimizationAlgorithm(int populationSize) {
@@ -24,7 +24,6 @@ public class OspreyOptimizationAlgorithm extends Algorithm {
 
         int fes = 0;
 
-        // ---------- Initialization ----------
         int bestIdx = 0;
         for (int i = 0; i < N; i++) {
             X[i] = problem.generateRandomSolution();
@@ -33,18 +32,16 @@ public class OspreyOptimizationAlgorithm extends Algorithm {
             if (fit[i] < fit[bestIdx]) bestIdx = i;
         }
 
-        // derive iteration count from remaining budget
         int remaining = maxFes - fes;
         int T = Math.max(1, remaining / (2 * N));
 
-        // ---------- Main loop ----------
         for (int t = 1; t <= T && fes < maxFes; t++) {
 
             bestIdx = argMin(fit);
 
             for (int i = 0; i < N && fes < maxFes; i++) {
 
-                // ===== Phase 1: Exploration (hunt fish) =====
+                // Phase 1: Exploration (hunt fish)
                 int fish = pickBetterIndex(i, fit, bestIdx);
                 if (fish == -1) fish = bestIdx;
 
@@ -69,7 +66,7 @@ public class OspreyOptimizationAlgorithm extends Algorithm {
 
                 if (fes >= maxFes) break;
 
-                // ===== Phase 2: Exploitation (carry fish) =====
+                // Phase 2: Exploitation (carry fish)
                 double shrink = 1.0 - ((double) t / (double) T);
                 if (shrink < 1e-6) shrink = 1e-6;
 
@@ -103,7 +100,7 @@ public class OspreyOptimizationAlgorithm extends Algorithm {
         return new Solution(X[bestIdx], fit[bestIdx]);
     }
 
-    // ---------- helpers ----------
+    // helpers
 
     private int argMin(double[] a) {
         int best = 0;
